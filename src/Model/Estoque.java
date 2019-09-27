@@ -15,19 +15,18 @@ public class Estoque {
 	public void inserir(Produto produto, int quantidade, Fornecedor fornecedor) {
 		
 		if(dp.buscar(produto) != null) {
-			for(int i = 0; i < quantidade; i++)
+			for(int i = 0; i < Estoque.produto.length && quantidade > 0; i++)
 				if(Estoque.produto[i] == null ) {
 					Estoque.produto[i] = new Produto();
 					Estoque.produto[i].setNome(produto.getNome());
 					Estoque.produto[i].setPrecoDeCusto(produto.getPrecoDeCusto());
 					Estoque.produto[i].setApelido(produto.getApelido());
-					Estoque.produto[i].setDuracao(produto.getDuracao());
-					Estoque.produto[i].setIsPerecivel(produto.getIsPerecivel());
-					Estoque.produto[i].setCodigo(Estoque.produto[i].geraCodigo(geraId()));
-					
+					Estoque.produto[i].setCodigo(Estoque.produto[i].geraCodigo(produto.getId()));
+					--quantidade;
 				}
 		}
 	}
+	
 	
 	
 	
@@ -58,13 +57,28 @@ public class Estoque {
 		
 	}
 	
-	public void deletar(Produto produto) {
+	public void deletar(String nome) {
+		
 		
 		boolean deletou = false;
 		for(int i = 0; i < Estoque.produto.length && deletou == false; i++) {
 			
 			if(Estoque.produto[i] != null)
-				if(Estoque.produto[i].equals(produto)) {
+				if(Estoque.produto[i].getNome().equalsIgnoreCase(nome)) {
+					Estoque.produto[i] = null;
+					deletou = true;
+				}
+		}
+	}
+	
+	public void deletar(Produto produto) {
+		
+		
+		boolean deletou = false;
+		for(int i = 0; i < Estoque.produto.length && deletou == false; i++) {
+			
+			if(Estoque.produto[i] != null)
+				if(Estoque.produto[i].equals((Produto)produto)) {
 					Estoque.produto[i] = null;
 					deletou = true;
 				}
@@ -82,26 +96,30 @@ public class Estoque {
 	}
 	
 	
-	
-	public String geraId() {
-		
-		int id = dp.getN();
-			
-		if(id  < 10) {
-			 return "0"+id;
-		}
-		else {
-			return ""+id;
-		}
-		
-		
-	}
 
 	public static Produto[] getProduto() {
 		return produto;
 	}
 
+	public void printaEstoque() {
 	
+		for(int i = 0; i < produto.length; i++)	
+			if(produto[i] != null) {
+				System.out.println(produto[i].getNome());
+				System.out.println(produto[i].getCodigo());
+			}
+		
+	}
+	
+	/*public String emiteAlerta() {
+		for(int i = 0; i < produto.length; i++)
+		for(int i = 0;  i < produto.length; i++) {
+			if(produto[i] != null) {
+				
+			}
+		}
+		return "";
+	}*/
 	
 	
 	

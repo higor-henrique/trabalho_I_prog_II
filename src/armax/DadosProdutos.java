@@ -18,7 +18,9 @@ public class DadosProdutos implements CRUD {
 			{
 				produto[i] = (Produto) obj;
 				inserido = true;
+				produto[i].setId(n);
 				n++;
+				
 			}	
 				
 		}
@@ -32,7 +34,7 @@ public class DadosProdutos implements CRUD {
 		{
 			if( produto[i] == null)
 			{
-				produto[i] = new Produto(nome, precoDeCusto, apelido, duracao, isPerecivel);
+				produto[i] = new Produto(nome, precoDeCusto, apelido);
 				inserido = true;
 				n++;
 			}	
@@ -50,7 +52,7 @@ public class DadosProdutos implements CRUD {
 			if( produto[i] != null)
 			{
 				if(produto[i].equals(obj))
-					return produto[i];	
+					return  (Produto)produto[i];	
 			}
 			 
 				
@@ -66,7 +68,7 @@ public class DadosProdutos implements CRUD {
 		for(int i = 0; i < produto.length; i++) {
 			if(produto[i] != null) {
 				if( produto[i].getNome().equalsIgnoreCase(nome))
-					return produto[i];
+					return (Produto)produto[i];
 			}
 		}
 		
@@ -82,7 +84,7 @@ public class DadosProdutos implements CRUD {
 		{
 			if( produto[i] != null)
 			{
-				if(produto[i].equals( produto))
+				if(produto[i].equals(obj) )
 					produto[i] = (Produto) novoObj;
 					atualizado = true;
 			}
@@ -110,10 +112,6 @@ public class DadosProdutos implements CRUD {
 		
 	}
 	
-	
-	public static int getN() {
-		return n;
-	}
 
 
 
@@ -126,8 +124,6 @@ public class DadosProdutos implements CRUD {
 				System.out.println(produto[i].getCodigo());
 				System.out.println("apelido: "+produto[i].getApelido());
 				System.out.println("precode Custo: "+produto[i].getPrecoDeCusto());
-				System.out.println("eh perecivel: "+produto[i].getIsPerecivel());
-				System.out.println("duracao: "+produto[i].getDuracao());
 			}
 			
 		}

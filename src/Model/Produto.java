@@ -4,23 +4,20 @@ import java.util.Random;
 
 
 public class Produto {
+	
 	private String nome;	
 	private String codigo;
 	private double precoDeCusto;
 	private double precoFinal;
+	private String id;
 	private String apelido;
-	private String dataDeValidade;
-	private int duracao;
-	private boolean isPerecivel;
 	private Fornecedor fornecedor = new Fornecedor();
 
-	public Produto(String nome, double precoDecusto, String apelido, int duracao, boolean isPerecivel) {
+	public Produto(String nome, double precoDecusto, String apelido) {
 		
 		setNome(nome);
 		setPrecoDeCusto(precoDeCusto);
 		setApelido(apelido);
-		setDuracao(duracao);
-		setIsPerecivel(isPerecivel);
 	}
 	
 
@@ -34,17 +31,18 @@ public class Produto {
 		setPrecoDeCusto(precoDeCusto);
 	}
 	
-	
-	
-	public int getDuracao() {
-		return duracao;
+	public String getId() {
+		return id;
 	}
 
-	public void setDuracao(int duracao) {
-		this.duracao = duracao;
+
+	public void setId(int id) {
+		if(id > 9)
+			this.id = ""+id;
+		this.id = "0"+id;
 	}
 
-	
+
 	public String getApelido() {
 		return apelido;
 	}
@@ -52,23 +50,6 @@ public class Produto {
 	public void setApelido(String apelido) {
 		this.apelido = apelido;
 	}
-
-	public String getDataDeValidade() {
-		return dataDeValidade;
-	}
-
-	public void setDataDeValidade(String dataDeValidade) {
-		this.dataDeValidade = dataDeValidade;
-	}
-
-	public boolean getIsPerecivel() {
-		return isPerecivel;
-	}
-
-	public void setIsPerecivel(boolean isPerecivel) {
-		this.isPerecivel = isPerecivel;
-	}
-
 	public Fornecedor getFornecedor() {
 		return fornecedor;
 	}

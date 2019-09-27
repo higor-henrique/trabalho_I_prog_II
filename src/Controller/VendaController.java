@@ -5,6 +5,7 @@ import Model.Venda;
 import Model.Estoque;
 import Model.Vendedor;
 import Model.Cliente;
+import Model.Produto;
 
 
 public class VendaController {
@@ -20,17 +21,18 @@ public class VendaController {
 	}
 	
 	public void escolheProduto(String nome, int quantidade) {
-		
-		for(int i = 0; i < quantidade; i++)
-			if(est.buscar(nome) !=null) 
-				ensacola(est.buscar(nome));	
+
+		for(int i = 0; i < quantidade ; i++)
+			if(est.buscar(nome) !=null)  {
+				ensacola(est.buscar(nome));
+			}
 		
 	}
 	
 	public void ensacola(Object produto) {
 		
 		venda.addNaSacola(produto);	
-	}
+	} 
 	
 	
 	
@@ -44,6 +46,11 @@ public class VendaController {
 		double preco = venda.geraPreco();
 		dv.inserir(venda);
 		
+		Produto[] produtoSacola = venda.getSacola().getProduto();
+		for(int i = 0; i < produtoSacola.length; i++) {
+			if(produtoSacola[i] != null)
+			est.deletar(produtoSacola[i]);
+		}
 		return preco;
 	}
 	
@@ -57,6 +64,14 @@ public class VendaController {
 	public void printaDadosVenda() {
 		
 		dv.printaDados();
+	}
+	
+	public Venda buscarDados() {
+		
+		return (Venda)dv.buscar((Venda)venda);
+	}
+	public void deletarVenda() {
+		dv.deletar(venda);
 	}
 	
 

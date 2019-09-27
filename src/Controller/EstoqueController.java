@@ -10,20 +10,7 @@ public class EstoqueController {
 	
 	public void printaEstoque() { 
 		
-		Produto[] vetor = estoque.getProduto();
-			
-		
-		for(int i = 0; i < vetor.length; i++) {
-			
-			if(vetor[i] != null)
-				System.out.println(vetor[i].getNome());
-		}
-	
-	
-	
-	
-	
-		
+		estoque.printaEstoque();
 	}
 	
 
